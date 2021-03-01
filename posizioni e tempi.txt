@@ -1,0 +1,27 @@
+7 settembre 2029
+earthpos1 =
+
+    0.9609
+    0.2721
+    0.0000
+
+15 settembre 2030
+venuspos1 =
+
+   -0.5737
+    0.4473
+    0.0270
+
+15 aprile 2032
+earthpos2 =
+
+   -0.9958
+   -0.0474
+   -0.0000
+
+15 ottobre 2034
+jupiterpos1 =
+
+    4.9423
+    2.2161
+   -0.1019

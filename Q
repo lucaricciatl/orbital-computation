@@ -1,0 +1,16 @@
+function [e,a,vinf_out] = flyby_non_della_minchia(vinf_in,V_planet,entering_pos,mu)
+%vinf_in velocita` in ingresso alla sfera di influenza del pianeta
+%vinf_out velocita` in uscita alla sfera di influenza del pianeta
+%vinf_out velocita` in uscita alla sfera di influenza del pianeta
+
+orb_calc2 = dot(vinf_in,entering_pos);
+delta = acos((orb_calc2)/(norm(vinf_in)*norm(entering_pos))); %angolo di svolta
+rp = (mu/((norm(vinf_in))^2))*(1/(sin(delta/2))-1);
+
+vinf_out =  vinf_in + V_planet;
+
+e = 1+rp *norm(vinf_in)^2/mu;
+a = rp/(e-1);
+
+end
+
