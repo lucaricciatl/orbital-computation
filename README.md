@@ -7,3 +7,5 @@ There are 2 main files:
 
 The first is used to create a solar system model and orbits to extract position and velocity of the planets.The second is used to generate orbital travel around
 solars system and inside SOI.
+
+![title](https://github.com/ATLED-3301/Aerospace-mission-to-Io/edit/main/solar_system.png)
