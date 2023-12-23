@@ -66,6 +66,21 @@ To implement the position of each planet over time, we placed this function in a
 
 If we had applied Professor E. M. Standish's algorithm in its entirety, we would have had to consider that the orbits change over time, and depending on the length of the time interval, the deviation from J2000 would have taken significant values. To avoid this, we made the simplifying assumption commonly adopted, where the Keplerian parameters remain constant over the chosen time interval. 
 
+# Hohmann transfers 
+A Hohmann transfer is a type of orbital maneuver that allows a spacecraft to transfer from one circular orbit to another circular orbit in the same plane, using two engine burns. This maneuver is named after the German scientist Walter Hohmann, who first introduced the concept in 1925.
+
+The key characteristics of a Hohmann transfer orbit include:
+
+Coplanar Orbits: The initial and final orbits are assumed to be coplanar (in the same orbital plane).
+Elliptical Transfer Orbit: The spacecraft transitions from an initial circular orbit to an elliptical transfer orbit during the first burn.
+Interplanetary Phase: The spacecraft travels along the elliptical transfer orbit until reaching the point where the final circular orbit intersects the transfer orbit.
+Second Burn: The spacecraft performs a second engine burn at the intersection point to transition from the elliptical transfer orbit to the final circular orbit.
+The key advantage of a Hohmann transfer is its efficiency in terms of fuel consumption. It minimizes the energy required for the transfer compared to other orbital maneuvers. However, it may not always be the fastest option, and in some cases, more complex maneuvers may be required for time-critical missions.
+
+μ is the gravitational parameter of the central body.
+
+Keep in mind that while Hohmann transfers are often used for interplanetary missions, they assume a simplified two-body problem and may not be directly applicable in more complex scenarios, such as encounters with other celestial bodies or for missions with specific arrival time requirements.
+
 ## Files
 
 1. solar_system.m
@@ -93,8 +108,8 @@ Ensure that you have the necessary dependencies installed, such as MATLAB or Oct
 This project assumes a basic understanding of celestial mechanics and aerospace engineering principles.
 Make sure to refer to the documentation of the Unipi platform for any specific guidelines or recommendations regarding robotics and control systems.
 
-
-![alt text](https://github.com/ATLED-3301/Aerospace-mission-to-Io/blob/main/solar_system.jpg?raw=true))
+Read my work here: 
+[`paper`]([./Realazione progetto .pdf](https://github.com/lucaricciatl/orbital-computation/blob/main/Realazione%20progetto%20.pdf))
 
 
 ![alt text](https://github.com/ATLED-3301/Aerospace-mission-to-Io/blob/main/spaceship_orbits.jpg?raw=true)
