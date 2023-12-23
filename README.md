@@ -32,22 +32,34 @@ The problem solved by Johann Heinrich Lambert involves finding the conic transfe
 Following the approach described in "Keplerian Elements for Approximate Position of Major Planet," we highlight the following steps:
 
 Calculate the value of the mean anomaly (𝑀) as 𝑀 = 𝐿 − 𝜔, where 𝐿 and 𝜔 are obtained linearly:
+
 𝐿 = 𝐿₀ + 𝐿̇ ∙ 𝑇 ; 𝜔 = 𝜔₀ + 𝜔̇ ∙ 𝑇
+
 Using the "Kepler equation for elliptical orbits," derive the value of the eccentric anomaly 𝐸 through a recursive algorithm:
+
 𝑀(𝑇) = 𝐸(𝑇) − 𝑒∗ ∙ 𝑠𝑖𝑛(𝐸(𝑇))
+
 where 𝑒∗ is the eccentricity with a conversion factor applied: 𝑒∗ = 180/𝜋 ∙ 𝑒.
+
 The numerical iterative algorithm involves calculating ∆𝑀, ∆𝐸, and updating 𝐸 until the exit condition |∆𝐸| < 10⁻⁶𝑑𝑒𝑔 is met.
 Once the value of 𝐸 is calculated, the planet's position in the local reference system is determined using the relations:
+
 { 𝑥 = 𝑎(𝑐𝑜𝑠𝐸 − 𝑒)
 𝑦 = 𝑎√(1 − 𝑒²) ∙ 𝑠𝑖𝑛𝐸
 𝑧 = 0 }
+
 To facilitate spatial position readings, transform the coordinates to the fixed inertial reference system "frame sun" using a Euler transformation "ZXZ" with rotation angles corresponding to the orbital parameter vector values.
+
 The transformation is implemented in the MATLAB function 𝑇𝑧𝑥𝑧.m.
+
 Assembling elementary rotations, we obtain the following ZXZ transformation matrix:
+
 [𝑇(Ω,𝑖,𝜔)] = [𝑐(𝜔)𝑐(Ω)−𝑠(𝜔)𝑠(Ω)𝑐(𝑖) −𝑐(Ω)𝑠(𝜔)+𝑐(𝜔)𝑠(Ω)𝑐(𝑖) −𝑠(𝜔)𝑠(𝑖)
 𝑐(𝜔)𝑠(Ω)+𝑠(𝜔)𝑐(Ω)𝑐(𝑖) −𝑠(𝜔)𝑠(Ω)+𝑐(𝜔)𝑐(Ω)𝑐(𝑖) 𝑠(𝑖)𝑐(𝜔)
 𝑠(𝜔)𝑠(𝑖) −𝑠(𝑖)𝑐(𝜔) 𝑐(𝑖) ]
+
 where 𝑐(∙) = 𝑐𝑜𝑠(∙) and 𝑠(∙) = 𝑠𝑖𝑛(∙).
+
 In the project code, steps 3 and 4 are condensed into a single function called advance.m. Given the planet and the instant at which we want to calculate its position (𝑇𝑒𝑝ℎ), it outputs a vector containing Cartesian coordinates with respect to the "sun" reference system.
 
 To implement the position of each planet over time, we placed this function in a for loop where the value 𝑇𝑒𝑝ℎ varies from the desired initial instant to the final one. The output of the loop is a matrix with 3 rows, equal to the number of spatial coordinates of the planet, for a number of columns corresponding to the value of the desired time interval (𝑇𝑒𝑝ℎ_𝑖𝑛𝑖𝑧𝑖𝑎𝑙𝑒 − 𝑇𝑒𝑝ℎ_𝑓𝑖𝑛𝑎𝑙𝑙𝑖𝑎𝑙𝑒). The columns of this matrix are the spatial coordinates, written in the "sun" reference system, that each planet occupies on different Julian days within the chosen time interval.
